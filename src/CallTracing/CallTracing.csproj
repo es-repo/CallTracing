@@ -7,9 +7,11 @@
     <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618;CS8625;CS8604</WarningsAsErrors>
 
     <PackageId>CallTracing</PackageId>
-    <Version>0.2.1</Version>
+    <Version>0.9</Version>
+    <Description>Track mock calls within unit tests.</Description>
     <Authors>Eugene Sirota</Authors>
-    <Company>Eugene Sirota</Company>
+    <PackageTags>mock, mocks, unittest, unittesting, tdd</PackageTags>
+    <PackageProjectUrl>https://github.com/es-repo/CallTracing</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
