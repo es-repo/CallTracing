@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.MethodCallTests
 {
-    public static class ToStringTests
+    public static class ToStringTest
     {
         public interface ISomeInterface
         {
@@ -21,11 +20,11 @@ namespace CallTracing.Tests.MethodCallTests
 
             static object[] TestCase1()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface), typeof(ISomeInterface).GetMethod(nameof(ISomeInterface.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface), typeof(ISomeInterface).GetMethod(nameof(ISomeInterface.Action))!, new object?[] { "abc" });
 
-                var expected = "MethodCall { Type = CallTracing.Tests.MethodCallTests.ToStringTests+ISomeInterface, Method = Void Action(System.String), Args = [abc] }";
+                var expected = "MethodCall { Type = CallTracing.Tests.MethodCallTests.ToStringTest+ISomeInterface, Method = Void Action(System.String), Args = [abc] }";
 
-                return new object[] { actualState, expected };
+                return new object[] { stateActual, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -33,9 +32,11 @@ namespace CallTracing.Tests.MethodCallTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(MethodCall actualState, string expected)
+        public static void Test(
+            MethodCall stateActual,
+            string expected)
         {
-            var actual = actualState.ToString();
+            var actual = stateActual.ToString();
 
             Assert.Equal(expected, actual);
         }

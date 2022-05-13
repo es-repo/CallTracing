@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.DelegateCallTests
 {
-    public static class EqualsTests
+    public static class EqualsTest
     {
         public sealed record Args
         {
@@ -33,7 +32,7 @@ namespace CallTracing.Tests.DelegateCallTests
 
             static object[] DelegateCall_OtherIsNull_FalseExpected()
             {
-                var actualState = new DelegateCall(typeof(SomeDelegate1), new object?[] {});
+                var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { });
 
                 var args = new Args
                 {
@@ -42,12 +41,12 @@ namespace CallTracing.Tests.DelegateCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] DelegateCall_OtherIsEquivalent_TrueExpected()
             {
-                var actualState = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
+                var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 
                 var args = new Args
                 {
@@ -56,12 +55,12 @@ namespace CallTracing.Tests.DelegateCallTests
 
                 var expected = true;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] DelegateCall_OtherHasDifferentType_FalseExpected()
             {
-                var actualState = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
+                var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 
                 var args = new Args
                 {
@@ -70,12 +69,12 @@ namespace CallTracing.Tests.DelegateCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] DelegateCall_OtherHasMoreArgs_FalseExpected()
             {
-                var actualState = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
+                var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 
                 var args = new Args
                 {
@@ -84,7 +83,7 @@ namespace CallTracing.Tests.DelegateCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -92,9 +91,12 @@ namespace CallTracing.Tests.DelegateCallTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(DelegateCall actualState, Args args, bool expected)
+        public static void Test(
+            DelegateCall stateActual,
+            Args args,
+            bool expected)
         {
-            var actual = actualState.Equals(args.Other);
+            var actual = stateActual.Equals(args.Other);
 
             Assert.Equal(expected, actual);
         }

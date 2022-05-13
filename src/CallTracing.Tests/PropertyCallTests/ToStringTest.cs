@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.PropertyCallTests
 {
-    public static class ToStringTests
+    public static class ToStringTest
     {
         public interface ISomeInterface
         {
@@ -21,11 +20,11 @@ namespace CallTracing.Tests.PropertyCallTests
 
             static object[] TestCase1()
             {
-                var actualState = new PropertyCall(typeof(ISomeInterface), typeof(ISomeInterface).GetProperty(nameof(ISomeInterface.Property1))!);
+                var stateActual = new PropertyCall(typeof(ISomeInterface), typeof(ISomeInterface).GetProperty(nameof(ISomeInterface.Property1))!);
 
-                var expected = "PropertyCall { Type = CallTracing.Tests.PropertyCallTests.ToStringTests+ISomeInterface, Property = Int32 Property1 }";
+                var expected = "PropertyCall { Type = CallTracing.Tests.PropertyCallTests.ToStringTest+ISomeInterface, Property = Int32 Property1 }";
 
-                return new object[] { actualState, expected };
+                return new object[] { stateActual, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -33,9 +32,11 @@ namespace CallTracing.Tests.PropertyCallTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(PropertyCall actualState, string expected)
+        public static void Test(
+            PropertyCall stateActual,
+            string expected)
         {
-            var actual = actualState.ToString();
+            var actual = stateActual.ToString();
 
             Assert.Equal(expected, actual);
         }

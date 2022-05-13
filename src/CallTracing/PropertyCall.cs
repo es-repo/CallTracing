@@ -6,13 +6,16 @@ namespace CallTracing
     {
         public PropertyInfo Property { get; private set; }
 
-        public PropertyCall(Type type, PropertyInfo property)
+        public PropertyCall(
+            Type type,
+            PropertyInfo property)
             : base(type)
         {
             Property = property;
         }
 
-        public bool Equals(PropertyCall? other)
+        public bool Equals(
+            PropertyCall? other)
         {
             if (other == null)
             {

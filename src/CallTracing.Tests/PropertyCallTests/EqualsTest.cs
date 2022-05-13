@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.PropertyCallTests
 {
-    public static class EqualsTests
+    public static class EqualsTest
     {
         public sealed record Args
         {
@@ -42,7 +41,7 @@ namespace CallTracing.Tests.PropertyCallTests
 
             static object[] PropertyCall_OtherIsNull_FalseExpected()
             {
-                var actualState = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
+                var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
                 var args = new Args
                 {
@@ -51,12 +50,12 @@ namespace CallTracing.Tests.PropertyCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] PropertyCall_OtherIsEquivalent_TrueExpected()
             {
-                var actualState = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
+                var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
                 var args = new Args
                 {
@@ -65,12 +64,12 @@ namespace CallTracing.Tests.PropertyCallTests
 
                 var expected = true;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] PropertyCall_OtherHasDifferentType_FalseExpected()
             {
-                var actualState = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
+                var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
                 var args = new Args
                 {
@@ -79,12 +78,12 @@ namespace CallTracing.Tests.PropertyCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] PropertyCall_OtherHasDifferentProperty_FalseExpected()
             {
-                var actualState = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
+                var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
                 var args = new Args
                 {
@@ -93,7 +92,7 @@ namespace CallTracing.Tests.PropertyCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -101,9 +100,12 @@ namespace CallTracing.Tests.PropertyCallTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(PropertyCall actualState, Args args, bool expected)
+        public static void Test(
+            PropertyCall stateActual,
+            Args args,
+            bool expected)
         {
-            var actual = actualState.Equals(args.Other);
+            var actual = stateActual.Equals(args.Other);
 
             Assert.Equal(expected, actual);
         }

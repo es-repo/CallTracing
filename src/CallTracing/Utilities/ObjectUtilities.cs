@@ -4,7 +4,9 @@ namespace CallTracing.Utilities
 {
     public static class ObjectUtilities
     {
-        public static string ObjectToString(object? o, int maxLength = 2000)
+        public static string ObjectToString(
+            object? o,
+            int maxLength = 2000)
         {
             static string GetFullString(object? o)
             {

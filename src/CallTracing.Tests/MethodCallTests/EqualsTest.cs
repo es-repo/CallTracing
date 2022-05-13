@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.MethodCallTests
 {
-    public static class EqualsTests
+    public static class EqualsTest
     {
         public sealed record Args
         {
@@ -44,7 +43,7 @@ namespace CallTracing.Tests.MethodCallTests
 
             static object[] MethodCall_OtherIsNull_FalseExpected()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
                 var args = new Args
                 {
@@ -53,12 +52,12 @@ namespace CallTracing.Tests.MethodCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] MethodCall_OtherIsEquivalent_TrueExpected()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
                 var args = new Args
                 {
@@ -67,12 +66,12 @@ namespace CallTracing.Tests.MethodCallTests
 
                 var expected = true;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] MethodCall_OtherHasDifferentType_FalseExpected()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
                 var args = new Args
                 {
@@ -81,12 +80,12 @@ namespace CallTracing.Tests.MethodCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] MethodCall_OtherHasDifferentMethod_FalseExpected()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
                 var args = new Args
                 {
@@ -95,12 +94,12 @@ namespace CallTracing.Tests.MethodCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] MethodCall_OtherHasMoreArgs_FalseExpected()
             {
-                var actualState = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
+                var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
                 var args = new Args
                 {
@@ -109,7 +108,7 @@ namespace CallTracing.Tests.MethodCallTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -117,9 +116,12 @@ namespace CallTracing.Tests.MethodCallTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(MethodCall actualState, Args args, bool expected)
+        public static void Test(
+            MethodCall stateActual,
+            Args args,
+            bool expected)
         {
-            var actual = actualState.Equals(args.Other);
+            var actual = stateActual.Equals(args.Other);
 
             Assert.Equal(expected, actual);
         }

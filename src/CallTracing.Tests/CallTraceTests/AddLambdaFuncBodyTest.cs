@@ -25,7 +25,7 @@
 
 //            static object[] EmptyCallTrace_LambdaWithFuncBody_CallAddedToCallTrace()
 //            {
-//                var actualState = new CallTrace();
+//                var stateActual = new CallTrace();
 
 //                Expression<Func<SomeDelegate, double>> lambdaExpression = (SomeDelegate someDelegate) => someDelegate(1.34, 2.32);
 
@@ -44,7 +44,7 @@
 //                    }
 //                });
 
-//                return new object[] { actualState, args, expectedState };
+//                return new object[] { stateActual, args, expectedState };
 //            }
 
 //            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -52,11 +52,11 @@
 
 //        [Theory]
 //        [ClassData(typeof(TestCases))]
-//        public static void Test(CallTrace actualState, Args args, CallTrace expectedState)
+//        public static void Test(CallTrace stateActual, Args args, CallTrace expectedState)
 //        {
-//            actualState.Add(args.LambdaExpression);
+//            stateActual.Add(args.LambdaExpression);
 
-//            Assert.Equal(expectedState, actualState);
+//            Assert.Equal(expectedState, stateActual);
 //        }
 //    }
 //}

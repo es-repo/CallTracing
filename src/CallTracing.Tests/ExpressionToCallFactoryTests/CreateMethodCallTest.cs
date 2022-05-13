@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq.Expressions;
 using Xunit;
 
 namespace CallTracing.Tests.ExpressionToCallFactoryTests
 {
-    public static class CreateMethodCallTests
+    public static class CreateMethodCallTest
     {
         public interface ISomeInterface
         {
@@ -15,7 +13,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         public sealed record Args
         {
-            public MethodCallExpression MethodCallExpression { get; init; } = null!; 
+            public MethodCallExpression MethodCallExpression { get; init; } = null!;
         }
 
         sealed class TestCases : IEnumerable<object[]>
@@ -36,7 +34,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
                     MethodCallExpression = methodCallExpression
                 };
 
-                var expected = new MethodCall(typeof(ISomeInterface), typeof(ISomeInterface).GetMethod(nameof(ISomeInterface.Func))!,  new object?[] { "a", 0.21 });
+                var expected = new MethodCall(typeof(ISomeInterface), typeof(ISomeInterface).GetMethod(nameof(ISomeInterface.Func))!, new object?[] { "a", 0.21 });
 
                 return new object[] { args, expected };
             }
@@ -46,7 +44,9 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(Args args, MethodCall expected)
+        public static void Test(
+            Args args,
+            MethodCall expected)
         {
             var actual = ExpressionToCallFactory.CreateMethodCall(args.MethodCallExpression);
 

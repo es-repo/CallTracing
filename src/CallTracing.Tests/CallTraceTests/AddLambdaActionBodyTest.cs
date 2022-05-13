@@ -38,7 +38,7 @@
 
 //            static object[] EmptyCallTrace_LambdaWithActionBody_CallAddedToCallTrace()
 //            {
-//                var actualState = new CallTrace();
+//                var stateActual = new CallTrace();
 
 //                Expression<Action<ISomeInterface>> lambdaExpression = (ISomeInterface someInterface) => someInterface.Action("abc");
 
@@ -57,12 +57,12 @@
 //                    }
 //                });
 
-//                return new object[] { actualState, args, expectedState };
+//                return new object[] { stateActual, args, expectedState };
 //            }
 
 //            static object[] EmptyCallTrace_LambdaWithActionBody_CallAddedToCallTrace2()
 //            {
-//                var actualState = new CallTrace();
+//                var stateActual = new CallTrace();
 
 //                Expression<Action<ISomeInterface>> lambdaExpression = (ISomeInterface someInterface) => someInterface.Action("abc");
 
@@ -81,12 +81,12 @@
 //                    }
 //                });
 
-//                return new object[] { actualState, args, expectedState };
+//                return new object[] { stateActual, args, expectedState };
 //            }
 
 //            static object[] NonEmptyCallTrace_LambdaWithActionBody_CallAddedToCallTrace()
 //            {
-//                var actualState = new CallTrace(new MockCallTrace[]
+//                var stateActual = new CallTrace(new MockCallTrace[]
 //                {
 //                    new MockCallTrace
 //                    {
@@ -120,7 +120,7 @@
 //                    },
 //                });
 
-//                return new object[] { actualState, args, expectedState };
+//                return new object[] { stateActual, args, expectedState };
 //            }
 
 //            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -128,11 +128,11 @@
 
 //        [Theory]
 //        [ClassData(typeof(TestCases))]
-//        public static void Test(CallTrace actualState, Args args, CallTrace expectedState)
+//        public static void Test(CallTrace stateActual, Args args, CallTrace expectedState)
 //        {
-//            actualState.Add(args.LambdaExpression);
+//            stateActual.Add(args.LambdaExpression);
 
-//            Assert.Equal(expectedState, actualState);
+//            Assert.Equal(expectedState, stateActual);
 //        }
 //    }
 //}

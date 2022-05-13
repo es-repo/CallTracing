@@ -8,14 +8,17 @@ namespace CallTracing
 
         public IReadOnlyList<object?> Args { get; private set; }
 
-        public DelegateCall(Type type, IEnumerable<object?> args)
+        public DelegateCall(
+            Type type,
+            IEnumerable<object?> args)
             : base(type)
         {
             this.args = args.ToList();
             Args = this.args.AsReadOnly();
         }
 
-        public bool Equals(DelegateCall? other)
+        public bool Equals(
+            DelegateCall? other)
         {
             if (other == null)
             {

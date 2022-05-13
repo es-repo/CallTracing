@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq.Expressions;
 using Xunit;
 
 namespace CallTracing.Tests.ExpressionToCallFactoryTests
 {
-    public static class CreatePropertyCallTests
+    public static class CreatePropertyCallTest
     {
         public interface ISomeInterface
         {
@@ -15,7 +13,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         public sealed record Args
         {
-            public MemberExpression MemberExpression { get; init; } = null!; 
+            public MemberExpression MemberExpression { get; init; } = null!;
         }
 
         sealed class TestCases : IEnumerable<object[]>
@@ -46,7 +44,9 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(Args args, PropertyCall expected)
+        public static void Test(
+            Args args,
+            PropertyCall expected)
         {
             var actual = ExpressionToCallFactory.CreatePropertyCall(args.MemberExpression);
 

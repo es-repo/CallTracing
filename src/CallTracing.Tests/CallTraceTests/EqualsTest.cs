@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 namespace CallTracing.Tests.CallTraceTests
 {
-    public static class EqualsTests
+    public static class EqualsTest
     {
         public interface ISomeInterface
         {
@@ -39,7 +38,7 @@ namespace CallTracing.Tests.CallTraceTests
 
             static object[] CallTrace_OtherIsNull_FalseExpected()
             {
-                var actualState = new CallTrace();
+                var stateActual = new CallTrace();
 
                 var args = new Args
                 {
@@ -48,12 +47,12 @@ namespace CallTracing.Tests.CallTraceTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] EmptyCallTrace_OtherIsEmptyToo_TrueExpected()
             {
-                var actualState = new CallTrace();
+                var stateActual = new CallTrace();
 
                 var args = new Args
                 {
@@ -62,12 +61,12 @@ namespace CallTracing.Tests.CallTraceTests
 
                 var expected = true;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] CallTrace_OtherHasSameCalls_TrueExpected()
             {
-                var actualState = new CallTrace(
+                var stateActual = new CallTrace(
                     new Call[]
                     {
                         new DelegateCall(typeof(SomeDelegate), new object?[] { "a" }),
@@ -87,12 +86,12 @@ namespace CallTracing.Tests.CallTraceTests
 
                 var expected = true;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             static object[] CallTrace_OtherHasOtherCalls_FalseExpected()
             {
-                var actualState = new CallTrace(
+                var stateActual = new CallTrace(
                     new Call[]
                     {
                         new DelegateCall(typeof(SomeDelegate), new object?[] { "a" }),
@@ -112,7 +111,7 @@ namespace CallTracing.Tests.CallTraceTests
 
                 var expected = false;
 
-                return new object[] { actualState, args, expected };
+                return new object[] { stateActual, args, expected };
             }
 
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -120,9 +119,12 @@ namespace CallTracing.Tests.CallTraceTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(CallTrace actualState, Args args, bool expected)
+        public static void Test(
+            CallTrace stateActual,
+            Args args,
+            bool expected)
         {
-            var actual = actualState.Equals(args.Other);
+            var actual = stateActual.Equals(args.Other);
 
             Assert.Equal(expected, actual);
         }

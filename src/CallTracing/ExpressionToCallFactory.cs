@@ -5,7 +5,8 @@ namespace CallTracing
 {
     internal static class ExpressionToCallFactory
     {
-        internal static Call CreateCall(LambdaExpression lambdaExpression)
+        internal static Call CreateCall(
+            LambdaExpression lambdaExpression)
         {
             if (lambdaExpression.Body is MethodCallExpression methodCallExpression)
             {
@@ -25,14 +26,16 @@ namespace CallTracing
             }
         }
 
-        internal static DelegateCall CreateDelegateCall(InvocationExpression invocationExpression)
+        internal static DelegateCall CreateDelegateCall(
+            InvocationExpression invocationExpression)
         {
             var args = invocationExpression.Arguments.ToObjects();
 
             return new DelegateCall(invocationExpression.Expression.Type, args);
         }
 
-        internal static MethodCall CreateMethodCall(MethodCallExpression methodCallExpression)
+        internal static MethodCall CreateMethodCall(
+            MethodCallExpression methodCallExpression)
         {
             var type = methodCallExpression.Object?.Type ?? throw new NotSupportedException("Static method calls are not supported.");
 
@@ -41,7 +44,8 @@ namespace CallTracing
             return new MethodCall(type, methodCallExpression.Method, args);
         }
 
-        internal static PropertyCall CreatePropertyCall(MemberExpression memberExpression)
+        internal static PropertyCall CreatePropertyCall(
+            MemberExpression memberExpression)
         {
             if (memberExpression.Member.DeclaringType == null)
             {
@@ -58,12 +62,14 @@ namespace CallTracing
             }
         }
 
-        internal static IEnumerable<object?> ToObjects(this IEnumerable<Expression> argumentExpressions)
+        internal static IEnumerable<object?> ToObjects(
+            this IEnumerable<Expression> argumentExpressions)
         {
             return argumentExpressions.Select(ArgumentExpressionToObject);
         }
 
-        internal static object? ArgumentExpressionToObject(Expression argumentExpression)
+        internal static object? ArgumentExpressionToObject(
+            Expression argumentExpression)
         {
             // TODO: Not all argument expressions require compilation.
             // Those which were captured as variable values can be extracted as is.

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Linq.Expressions;
 using Xunit;
 
 namespace CallTracing.Tests.ExpressionToCallFactoryTests
 {
-    public static class CreateCallTests
+    public static class CreateCallTest
     {
         public delegate int SomeDelegate(string s, double d);
 
@@ -19,7 +17,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         public sealed record Args
         {
-            public LambdaExpression LambdaExpression { get; init; } = null!; 
+            public LambdaExpression LambdaExpression { get; init; } = null!;
         }
 
         sealed class TestCases : IEnumerable<object[]>
@@ -76,7 +74,9 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
 
         [Theory]
         [ClassData(typeof(TestCases))]
-        public static void Test(Args args, Call expected)
+        public static void Test(
+            Args args,
+            Call expected)
         {
             var actual = ExpressionToCallFactory.CreateCall(args.LambdaExpression);
 

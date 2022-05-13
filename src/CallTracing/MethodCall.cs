@@ -11,7 +11,10 @@ namespace CallTracing
 
         public MethodInfo Method { get; private set; }
 
-        public MethodCall(Type type, MethodInfo method, IEnumerable<object?> args)
+        public MethodCall(
+            Type type,
+            MethodInfo method,
+            IEnumerable<object?> args)
             : base(type)
         {
             Method = method;
@@ -19,7 +22,8 @@ namespace CallTracing
             Args = this.args.AsReadOnly();
         }
 
-        public bool Equals(MethodCall? other)
+        public bool Equals(
+            MethodCall? other)
         {
             if (other == null)
             {

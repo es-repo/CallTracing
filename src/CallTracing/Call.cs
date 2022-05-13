@@ -7,7 +7,8 @@
         /// </summary>
         public Type Type { get; protected set; }
 
-        protected Call(Type type)
+        protected Call(
+            Type type)
         {
             Type = type;
         }
