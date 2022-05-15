@@ -8,8 +8,7 @@ namespace CallTracing
 
         public IReadOnlyList<Call> Calls { get; private set; }
 
-        internal CallTrace(
-            IEnumerable<Call> calls)
+        internal CallTrace(IEnumerable<Call> calls)
         {
             this.calls = calls.ToList();
             Calls = this.calls.AsReadOnly();
@@ -17,6 +16,14 @@ namespace CallTracing
 
         public CallTrace() : this(new List<Call>())
         {
+        }
+
+        public CallTrace(params LambdaExpression[] lambdaExpressions) : this()
+        {
+            foreach (var e in lambdaExpressions)
+            {
+                AddUntyped(e);
+            }
         }
 
         public void Add<TMock, TResult>(
