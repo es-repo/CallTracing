@@ -1,4 +1,5 @@
 # CallTracing
+[![NuGet version (CallTracing)](https://img.shields.io/nuget/v/CallTracing.svg?style=flat-square)](https://www.nuget.org/packages/CallTracing/)
 
 ## Purpose 
 

@@ -7,7 +7,7 @@
     <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618;CS8625;CS8604</WarningsAsErrors>
 
     <PackageId>CallTracing</PackageId>
-    <Version>0.9.1</Version>
+    <Version>0.9.4</Version>
     <Description>Track mock calls within unit tests.</Description>
     <Authors>Eugene Sirota</Authors>
     <PackageTags>mock, mocks, unittest, unittesting, tdd</PackageTags>
@@ -15,12 +15,17 @@
     <RepositoryUrl>https://github.com/es-repo/CallTracing</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Tests</_Parameter1>
     </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\docs\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
