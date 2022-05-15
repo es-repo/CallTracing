@@ -8,7 +8,7 @@
 
     <PackageId>CallTracing</PackageId>
     <Version>0.9.4</Version>
-    <Description>Track mock calls within unit tests.</Description>
+    <Description>Track mock calls within unit tests for .NET</Description>
     <Authors>Eugene Sirota</Authors>
     <PackageTags>mock, mocks, unittest, unittesting, tdd</PackageTags>
     <PackageProjectUrl>https://github.com/es-repo/CallTracing</PackageProjectUrl>

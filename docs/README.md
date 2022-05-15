@@ -1,9 +1,9 @@
 # CallTracing
-[![NuGet version (CallTracing)](https://img.shields.io/nuget/v/CallTracing.svg?style=flat-square)](https://www.nuget.org/packages/CallTracing/)
+[![NuGet version (CallTracing)](https://img.shields.io/nuget/v/CallTracing.svg)](https://www.nuget.org/packages/CallTracing/)
 
 ## Purpose 
 
-This library was developed with the aim to track mock calls within unit tests. Although other use cases also can be discovered.
+This library was developed with the aim to track mock calls within unit tests for .NET. Although other use cases also can be discovered.
 
 ## Motivation
 
