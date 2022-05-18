@@ -14,11 +14,10 @@ namespace CallTracing.Tests.MethodCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return TestCase1();
+                yield return MethodCall_StringExpected_1();
             }
 
-            static object[] TestCase1()
+            static object[] MethodCall_StringExpected_1()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface), typeof(ISomeInterface).GetMethod(nameof(ISomeInterface.Action))!, new object?[] { "abc" });
 

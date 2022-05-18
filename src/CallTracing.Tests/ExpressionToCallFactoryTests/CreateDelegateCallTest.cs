@@ -17,14 +17,12 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return InvocationExpressionWithInlineParams_DelegateCallExpected();
+                yield return InvocationExpressionWithInlineParams_DelegateCallExpected_1();
 
-                // 2.
-                yield return InvocationExpressionWithCapturedValuesParams_DelegateCallExpected();
+                yield return InvocationExpressionWithCapturedValuesParams_DelegateCallExpected_2();
             }
 
-            static object[] InvocationExpressionWithInlineParams_DelegateCallExpected()
+            static object[] InvocationExpressionWithInlineParams_DelegateCallExpected_1()
             {
                 Expression<Func<SomeDelegate, int>> lambdaExpression = someDelegate => someDelegate("a", 0.21);
                 var invocationExpression = (InvocationExpression)lambdaExpression.Body;
@@ -39,7 +37,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
                 return new object[] { args, expected };
             }
 
-            static object[] InvocationExpressionWithCapturedValuesParams_DelegateCallExpected()
+            static object[] InvocationExpressionWithCapturedValuesParams_DelegateCallExpected_2()
             {
                 var s = "a";
                 var d = 0.21;

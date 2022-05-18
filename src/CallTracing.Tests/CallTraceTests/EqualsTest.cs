@@ -23,20 +23,16 @@ namespace CallTracing.Tests.CallTraceTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return CallTrace_OtherIsNull_FalseExpected();
+                yield return CallTrace_OtherIsNull_FalseExpected_1();
 
-                // 2.
-                yield return EmptyCallTrace_OtherIsEmptyToo_TrueExpected();
+                yield return EmptyCallTrace_OtherIsEmptyToo_TrueExpected_2();
 
-                // 3.
-                yield return CallTrace_OtherHasSameCalls_TrueExpected();
+                yield return CallTrace_OtherHasSameCalls_TrueExpected_3();
 
-                // 4.
-                yield return CallTrace_OtherHasOtherCalls_FalseExpected();
+                yield return CallTrace_OtherHasOtherCalls_FalseExpected_4();
             }
 
-            static object[] CallTrace_OtherIsNull_FalseExpected()
+            static object[] CallTrace_OtherIsNull_FalseExpected_1()
             {
                 var stateActual = new CallTrace();
 
@@ -50,7 +46,7 @@ namespace CallTracing.Tests.CallTraceTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] EmptyCallTrace_OtherIsEmptyToo_TrueExpected()
+            static object[] EmptyCallTrace_OtherIsEmptyToo_TrueExpected_2()
             {
                 var stateActual = new CallTrace();
 
@@ -64,7 +60,7 @@ namespace CallTracing.Tests.CallTraceTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] CallTrace_OtherHasSameCalls_TrueExpected()
+            static object[] CallTrace_OtherHasSameCalls_TrueExpected_3()
             {
                 var stateActual = new CallTrace(
                     new Call[]
@@ -89,7 +85,7 @@ namespace CallTracing.Tests.CallTraceTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] CallTrace_OtherHasOtherCalls_FalseExpected()
+            static object[] CallTrace_OtherHasOtherCalls_FalseExpected_4()
             {
                 var stateActual = new CallTrace(
                     new Call[]

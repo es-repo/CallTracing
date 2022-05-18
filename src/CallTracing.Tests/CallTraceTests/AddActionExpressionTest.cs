@@ -22,14 +22,12 @@ namespace CallTracing.Tests.CallTraceTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1. 
-                yield return EmptyCallTrace_ActionExpression_CallAddedToCallTrace();
+                yield return EmptyCallTrace_ActionExpression_CallAddedToCallTrace_1();
 
-                // 2. 
-                yield return NonEmptyCallTrace_ActionExpression_CallAddedToCallTrace();
+                yield return NonEmptyCallTrace_ActionExpression_CallAddedToCallTrace_2();
             }
 
-            static object[] EmptyCallTrace_ActionExpression_CallAddedToCallTrace()
+            static object[] EmptyCallTrace_ActionExpression_CallAddedToCallTrace_1()
             {
                 var stateActual = new CallTrace();
 
@@ -48,7 +46,7 @@ namespace CallTracing.Tests.CallTraceTests
                 return new object[] { stateActual, args, stateExpected };
             }
 
-            static object[] NonEmptyCallTrace_ActionExpression_CallAddedToCallTrace()
+            static object[] NonEmptyCallTrace_ActionExpression_CallAddedToCallTrace_2()
             {
                 var stateActual = new CallTrace(new Call[]
                 {

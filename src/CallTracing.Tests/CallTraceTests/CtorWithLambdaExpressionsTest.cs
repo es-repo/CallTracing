@@ -28,11 +28,10 @@ namespace CallTracing.Tests.CallTraceTests
 
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return TestCase1();
+                yield return TestCase_1();
             }
 
-            private object[] TestCase1()
+            private object[] TestCase_1()
             {
                 var args = new Args
                 {

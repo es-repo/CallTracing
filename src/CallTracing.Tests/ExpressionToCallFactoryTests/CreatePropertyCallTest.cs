@@ -20,11 +20,10 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return MemberExpression_PropertyCallExpected();
+                yield return MemberExpression_PropertyCallExpected_1();
             }
 
-            static object[] MemberExpression_PropertyCallExpected()
+            static object[] MemberExpression_PropertyCallExpected_1()
             {
                 Expression<Func<ISomeInterface, int>> lambdaExpression = someInterface => someInterface.Property;
                 var memberExpression = (MemberExpression)lambdaExpression.Body;

@@ -20,11 +20,10 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return MethodCallExpression_MethodCallExpressionExpected();
+                yield return MethodCallExpression_MethodCallExpressionExpected_1();
             }
 
-            static object[] MethodCallExpression_MethodCallExpressionExpected()
+            static object[] MethodCallExpression_MethodCallExpressionExpected_1()
             {
                 Expression<Func<ISomeInterface, int>> lambdaExpression = someInterface => someInterface.Func("a", 0.21);
                 var methodCallExpression = (MethodCallExpression)lambdaExpression.Body;

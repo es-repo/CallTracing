@@ -26,20 +26,16 @@ namespace CallTracing.Tests.PropertyCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return PropertyCall_OtherIsNull_FalseExpected();
+                yield return PropertyCall_OtherIsNull_FalseExpected_1();
 
-                // 2.
-                yield return PropertyCall_OtherIsEquivalent_TrueExpected();
+                yield return PropertyCall_OtherIsEquivalent_TrueExpected_2();
 
-                // 3.
-                yield return PropertyCall_OtherHasDifferentType_FalseExpected();
+                yield return PropertyCall_OtherHasDifferentType_FalseExpected_3();
 
-                // 4.
-                yield return PropertyCall_OtherHasDifferentProperty_FalseExpected();
+                yield return PropertyCall_OtherHasDifferentProperty_FalseExpected_4();
             }
 
-            static object[] PropertyCall_OtherIsNull_FalseExpected()
+            static object[] PropertyCall_OtherIsNull_FalseExpected_1()
             {
                 var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
@@ -53,7 +49,7 @@ namespace CallTracing.Tests.PropertyCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] PropertyCall_OtherIsEquivalent_TrueExpected()
+            static object[] PropertyCall_OtherIsEquivalent_TrueExpected_2()
             {
                 var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
@@ -67,7 +63,7 @@ namespace CallTracing.Tests.PropertyCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] PropertyCall_OtherHasDifferentType_FalseExpected()
+            static object[] PropertyCall_OtherHasDifferentType_FalseExpected_3()
             {
                 var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 
@@ -81,7 +77,7 @@ namespace CallTracing.Tests.PropertyCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] PropertyCall_OtherHasDifferentProperty_FalseExpected()
+            static object[] PropertyCall_OtherHasDifferentProperty_FalseExpected_4()
             {
                 var stateActual = new PropertyCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetProperty(nameof(ISomeInterface1.Property1))!);
 

@@ -3,7 +3,7 @@
 
 ## Purpose 
 
-This library was developed with the aim to track mock calls within unit tests for .NET. Although other use cases also can be discovered.
+This library was developed with the aim to track mock calls within unit tests for .NET. Although other use cases could be discovered.
 
 ## Motivation
 
@@ -87,12 +87,12 @@ class BoxMock : IBox
 }
 ```
 
-Notice that `BoxMock` takes a `CallTrace` instance in the constructor and then uses it in its methods bodies to designate that a method or a property was called.
+Notice that `BoxMock` takes a `CallTrace` instance in the constructor and then uses it in its methods and properties to designate that the method or the property was called.
 
-Then let's create a factory method for `WriteLog` delegate:
+Then let's create a factory method for `WriteLog` delegate mock:
 
 ```C#
-static WriteLog CreateWriteLog(CallTrace callTrace)
+static WriteLog CreateWriteLogMock(CallTrace callTrace)
 {
   return (string message) =>
   {
@@ -101,20 +101,20 @@ static WriteLog CreateWriteLog(CallTrace callTrace)
 }
 ```
 
-Similarly to `BoxMock` the factory method takes a `CallTrace` instance and then it's used to designate that a delegate was called. 
+Similarly to `BoxMock` the factory method takes a `CallTrace` instance and then it's used to designate that the delegate was called. 
 
-Now the test method to assert that right calls and in the right order were invoked can be defined in following way:
+Now the test method to assert that right calls and in the right order were invoked can be implemented in following way:
 
 ```C#
-void Test()
+static void Test()
 {
   var callTraceActual = new CallTrace();
   
-  var boxMock = new BoxMock(callTraceActual);
-  var writeLogMock = CreateWriteLog(callTraceActual);
+  var box = new BoxMock(callTraceActual);
+  var writeLog = CreateWriteLogMock(callTraceActual);
 
   var things = new object[] { 1, 2 };
-  FillBox(boxMock, things, writeLogMock);
+  FillBox(box, things, writeLog);
 
   var callTraceExpected = new CallTrace(
       (IBox box) => box.Open(),

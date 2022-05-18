@@ -25,23 +25,18 @@ namespace CallTracing.Tests.MethodCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return MethodCall_OtherIsNull_FalseExpected();
+                yield return MethodCall_OtherIsNull_FalseExpected_1();
 
-                // 2.
-                yield return MethodCall_OtherIsEquivalent_TrueExpected();
+                yield return MethodCall_OtherIsEquivalent_TrueExpected_2();
 
-                // 3.
-                yield return MethodCall_OtherHasDifferentType_FalseExpected();
+                yield return MethodCall_OtherHasDifferentType_FalseExpected_3();
 
-                // 4.
-                yield return MethodCall_OtherHasDifferentMethod_FalseExpected();
+                yield return MethodCall_OtherHasDifferentMethod_FalseExpected_4();
 
-                // 5.
-                yield return MethodCall_OtherHasMoreArgs_FalseExpected();
+                yield return MethodCall_OtherHasMoreArgs_FalseExpected_5();
             }
 
-            static object[] MethodCall_OtherIsNull_FalseExpected()
+            static object[] MethodCall_OtherIsNull_FalseExpected_1()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
@@ -55,7 +50,7 @@ namespace CallTracing.Tests.MethodCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] MethodCall_OtherIsEquivalent_TrueExpected()
+            static object[] MethodCall_OtherIsEquivalent_TrueExpected_2()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
@@ -69,7 +64,7 @@ namespace CallTracing.Tests.MethodCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] MethodCall_OtherHasDifferentType_FalseExpected()
+            static object[] MethodCall_OtherHasDifferentType_FalseExpected_3()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
@@ -83,7 +78,7 @@ namespace CallTracing.Tests.MethodCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] MethodCall_OtherHasDifferentMethod_FalseExpected()
+            static object[] MethodCall_OtherHasDifferentMethod_FalseExpected_4()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 
@@ -97,7 +92,7 @@ namespace CallTracing.Tests.MethodCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] MethodCall_OtherHasMoreArgs_FalseExpected()
+            static object[] MethodCall_OtherHasMoreArgs_FalseExpected_5()
             {
                 var stateActual = new MethodCall(typeof(ISomeInterface1), typeof(ISomeInterface1).GetMethod(nameof(ISomeInterface1.Action))!, new object?[] { "abc" });
 

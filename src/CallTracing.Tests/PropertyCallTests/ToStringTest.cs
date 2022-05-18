@@ -14,11 +14,10 @@ namespace CallTracing.Tests.PropertyCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return TestCase1();
+                yield return PropertyCall_StringExpected();
             }
 
-            static object[] TestCase1()
+            static object[] PropertyCall_StringExpected()
             {
                 var stateActual = new PropertyCall(typeof(ISomeInterface), typeof(ISomeInterface).GetProperty(nameof(ISomeInterface.Property1))!);
 

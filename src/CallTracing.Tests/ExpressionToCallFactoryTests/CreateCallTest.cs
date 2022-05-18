@@ -24,10 +24,14 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                yield return DelegateCallExpression_DelegateCallExpected();
+                yield return DelegateCallExpression_DelegateCallExpected_1();
+
+                yield return MethodCallExpression_MethodCallExpressionExpected_2();
+
+                yield return MemberExpression_PropertyCallExpected_3();
             }
 
-            static object[] DelegateCallExpression_DelegateCallExpected()
+            static object[] DelegateCallExpression_DelegateCallExpected_1()
             {
                 Expression<Func<SomeDelegate, int>> lambdaExpression = someDelegate => someDelegate("a", 0.21);
 
@@ -41,7 +45,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
                 return new object[] { args, expected };
             }
 
-            static object[] MethodCallExpression_MethodCallExpressionExpected()
+            static object[] MethodCallExpression_MethodCallExpressionExpected_2()
             {
                 Expression<Func<ISomeInterface, int>> lambdaExpression = someInterface => someInterface.Func("a", 0.21);
 
@@ -55,7 +59,7 @@ namespace CallTracing.Tests.ExpressionToCallFactoryTests
                 return new object[] { args, expected };
             }
 
-            static object[] MemberExpression_PropertyCallExpected()
+            static object[] MemberExpression_PropertyCallExpected_3()
             {
                 Expression<Func<ISomeInterface, int>> lambdaExpression = someInterface => someInterface.Property;
 

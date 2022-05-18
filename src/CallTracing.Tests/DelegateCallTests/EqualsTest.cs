@@ -17,20 +17,16 @@ namespace CallTracing.Tests.DelegateCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return DelegateCall_OtherIsNull_FalseExpected();
+                yield return DelegateCall_OtherIsNull_FalseExpected_1();
 
-                // 2.
-                yield return DelegateCall_OtherIsEquivalent_TrueExpected();
+                yield return DelegateCall_OtherIsEquivalent_TrueExpected_2();
 
-                // 3.
-                yield return DelegateCall_OtherHasDifferentType_FalseExpected();
+                yield return DelegateCall_OtherHasDifferentType_FalseExpected_3();
 
-                // 4.
-                yield return DelegateCall_OtherHasMoreArgs_FalseExpected();
+                yield return DelegateCall_OtherHasMoreArgs_FalseExpected_4();
             }
 
-            static object[] DelegateCall_OtherIsNull_FalseExpected()
+            static object[] DelegateCall_OtherIsNull_FalseExpected_1()
             {
                 var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { });
 
@@ -44,7 +40,7 @@ namespace CallTracing.Tests.DelegateCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] DelegateCall_OtherIsEquivalent_TrueExpected()
+            static object[] DelegateCall_OtherIsEquivalent_TrueExpected_2()
             {
                 var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 
@@ -58,7 +54,7 @@ namespace CallTracing.Tests.DelegateCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] DelegateCall_OtherHasDifferentType_FalseExpected()
+            static object[] DelegateCall_OtherHasDifferentType_FalseExpected_3()
             {
                 var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 
@@ -72,7 +68,7 @@ namespace CallTracing.Tests.DelegateCallTests
                 return new object[] { stateActual, args, expected };
             }
 
-            static object[] DelegateCall_OtherHasMoreArgs_FalseExpected()
+            static object[] DelegateCall_OtherHasMoreArgs_FalseExpected_4()
             {
                 var stateActual = new DelegateCall(typeof(SomeDelegate1), new object?[] { null, 1, "abc" });
 

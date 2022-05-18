@@ -11,11 +11,10 @@ namespace CallTracing.Tests.DelegateCallTests
         {
             public IEnumerator<object[]> GetEnumerator()
             {
-                // 1.
-                yield return TestCase1();
+                yield return DelegateCall_StringExpected();
             }
 
-            static object[] TestCase1()
+            static object[] DelegateCall_StringExpected()
             {
                 var stateActual = new DelegateCall(typeof(SomeDelegate), new object?[] { null, 1, "abc" });
 
