@@ -3,7 +3,7 @@
 
 ## Purpose 
 
-This library was developed with the aim to track mock calls within unit tests for .NET. Although other use cases could be discovered.
+This library was developed with the aim to track mock calls in unit tests for .NET. Although other use cases could be discovered.
 
 ## Motivation
 

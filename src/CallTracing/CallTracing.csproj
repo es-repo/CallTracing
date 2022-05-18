@@ -7,8 +7,8 @@
     <WarningsAsErrors>CS8600;CS8602;CS8603;CS8618;CS8625;CS8604</WarningsAsErrors>
 
     <PackageId>CallTracing</PackageId>
-    <Version>0.9.4</Version>
-    <Description>Track mock calls within unit tests for .NET</Description>
+    <Version>0.9.5</Version>
+    <Description>Track mock calls in unit tests for .NET</Description>
     <Authors>Eugene Sirota</Authors>
     <PackageTags>mock, mocks, unittest, unittesting, tdd</PackageTags>
     <PackageProjectUrl>https://github.com/es-repo/CallTracing</PackageProjectUrl>
